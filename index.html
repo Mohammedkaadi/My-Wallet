@@ -3,193 +3,342 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>إدارة أموالي</title>
+  <title>إدارة أموالي - Dashboard عصري</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #e8f0fe;
-      margin: 0; padding: 0;
-      display: flex; flex-direction: column; min-height: 100vh;
-    }
-    header {
-      background-color: #2a71d0;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    main {
-      flex: 1;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-    input[type="number"], input[type="text"], select {
-      width: 100%;
-      padding: 8px 10px;
-      font-size: 1rem;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-    button {
-      margin-top: 20px;
-      padding: 12px 20px;
-      background-color: #2a71d0;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      width: 100%;
-    }
-    button:hover {
-      background-color: #1e4f9d;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 25px;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: center;
-    }
-    th {
-      background-color: #2a71d0;
-      color: white;
-    }
-    footer {
-      background: #2a71d0;
-      color: white;
-      text-align: center;
-      padding: 10px 5px;
-      font-size: 0.9rem;
-      margin-top: 30px;
-    }
-    .whatsapp-link {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: #25d366;
-      border-radius: 50%;
-      width: 55px;
-      height: 55px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      cursor: pointer;
-      z-index: 1000;
-    }
-    .whatsapp-link img {
-      width: 30px;
-      height: 30px;
-    }
-    .alert {
-      background: #ffcccb;
-      color: #900;
-      padding: 10px;
-      margin-top: 15px;
-      border-radius: 5px;
-      font-weight: bold;
-      text-align: center;
-    }
-    .welcome-screen {
-      position: fixed;
-      inset: 0;
-      background: #2a71d0;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 30px 20px;
-      z-index: 2000;
-    }
-    .welcome-screen h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-    .welcome-screen p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      line-height: 1.5;
-    }
-    .welcome-screen button {
-      width: auto;
-      padding: 12px 30px;
-      font-size: 1.2rem;
-      border-radius: 30px;
-    }
-    #remainingAmount {
-      margin-top: 20px;
-      font-weight: bold;
-      font-size: 1.2rem;
-      color: #2a71d0;
-      text-align: center;
-    }
-    .btn-delete {
-      background:#d9534f; 
-      color:#fff; 
-      border:none; 
-      padding:5px 10px; 
-      border-radius:4px; 
-      cursor:pointer;
-    }
-    #clearAllBtn {
-      background-color:#d9534f; 
-      margin-top:10px;
-      width: 100%;
-    }
+   /* خطوط Google Fonts */
+   @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+   
+   /* Reset */
+   * {
+   margin: 0; padding: 0; box-sizing: border-box;
+   transition: background-color 0.3s, color 0.3s;
+   }
+   body {
+   font-family: 'Cairo', sans-serif;
+   background-color: #f0f4f8;
+   color: #222;
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 20px;
+   }
+   
+   /* Dark Mode */
+   body.dark {
+   background-color: #121212;
+   color: #eee;
+   }
+   
+   header {
+   width: 100%;
+   max-width: 720px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 15px 20px;
+   background: #1e88e5;
+   border-radius: 12px;
+   box-shadow: 0 6px 15px rgba(30,136,229,0.4);
+   color: white;
+   font-weight: 700;
+   font-size: 1.8rem;
+   user-select: none;
+   }
+   
+   /* Dark header */
+   body.dark header {
+   background: #0d47a1;
+   box-shadow: 0 6px 15px rgba(13,71,161,0.7);
+   }
+   
+   /* Dark mode toggle button */
+   #darkModeToggle {
+   cursor: pointer;
+   background: transparent;
+   border: 2px solid white;
+   border-radius: 25px;
+   padding: 6px 16px;
+   color: white;
+   font-weight: 600;
+   font-size: 1rem;
+   user-select: none;
+   transition: background-color 0.3s, color 0.3s;
+   }
+   #darkModeToggle:hover {
+   background-color: white;
+   color: #1e88e5;
+   font-weight: 700;
+   }
+   
+   main {
+   width: 100%;
+   max-width: 720px;
+   background: white;
+   border-radius: 16px;
+   padding: 25px 30px;
+   margin-top: 30px;
+   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+   user-select: none;
+   }
+   body.dark main {
+   background: #1c1c1c;
+   box-shadow: 0 10px 25px rgba(255,255,255,0.05);
+   }
+   
+   label {
+   display: block;
+   margin-bottom: 8px;
+   font-weight: 700;
+   font-size: 1.1rem;
+   color: #333;
+   }
+   body.dark label {
+   color: #ddd;
+   }
+   
+   select, input[type="number"], input[type="text"] {
+   width: 100%;
+   padding: 12px 15px;
+   font-size: 1.1rem;
+   border-radius: 12px;
+   border: 2px solid #ddd;
+   outline: none;
+   transition: border-color 0.3s;
+   background-color: #fafafa;
+   color: #222;
+   font-weight: 500;
+   }
+   select:focus, input[type="number"]:focus, input[type="text"]:focus {
+   border-color: #1e88e5;
+   }
+   body.dark select, body.dark input[type="number"], body.dark input[type="text"] {
+   background-color: #2a2a2a;
+   border-color: #555;
+   color: #eee;
+   }
+   body.dark select:focus, body.dark input[type="number"]:focus, body.dark input[type="text"]:focus {
+   border-color: #90caf9;
+   }
+   
+   button {
+   width: 100%;
+   padding: 14px;
+   font-size: 1.25rem;
+   font-weight: 700;
+   border: none;
+   border-radius: 30px;
+   margin-top: 25px;
+   cursor: pointer;
+   background: #1e88e5;
+   color: white;
+   box-shadow: 0 6px 15px rgba(30,136,229,0.4);
+   transition: background-color 0.3s, box-shadow 0.3s, transform 0.15s;
+   user-select: none;
+   }
+   button:hover {
+   background-color: #1565c0;
+   box-shadow: 0 8px 22px rgba(21,101,192,0.6);
+   transform: translateY(-2px);
+   }
+   button:active {
+   transform: translateY(0);
+   box-shadow: 0 4px 10px rgba(21,101,192,0.5);
+   }
+   body.dark button {
+   background: #1565c0;
+   box-shadow: 0 6px 15px rgba(21,101,192,0.7);
+   }
+   body.dark button:hover {
+   background-color: #90caf9;
+   color: #111;
+   box-shadow: 0 8px 22px rgba(144,202,249,0.9);
+   }
+   
+   table {
+   width: 100%;
+   border-collapse: separate;
+   border-spacing: 0 8px;
+   margin-top: 30px;
+   font-size: 1rem;
+   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+   border-radius: 14px;
+   overflow: hidden;
+   }
+   body.dark table {
+   box-shadow: 0 10px 30px rgba(255,255,255,0.05);
+   }
+   
+   th, td {
+   padding: 14px 20px;
+   background: #f7f9fc;
+   color: #555;
+   text-align: center;
+   font-weight: 600;
+   transition: background-color 0.3s, color 0.3s;
+   }
+   body.dark th, body.dark td {
+   background: #2a2a2a;
+   color: #ccc;
+   }
+   
+   th {
+   background: #1e88e5;
+   color: white;
+   font-size: 1.1rem;
+   }
+   body.dark th {
+   background: #1565c0;
+   }
+   
+   tbody tr:hover td {
+   background-color: #cde5ff;
+   color: #0d47a1;
+   font-weight: 700;
+   }
+   body.dark tbody tr:hover td {
+   background-color: #1565c0;
+   color: #e1f5fe;
+   }
+   
+   .btn-delete {
+   background: #e53935;
+   color: white;
+   border: none;
+   padding: 6px 14px;
+   border-radius: 12px;
+   cursor: pointer;
+   font-weight: 700;
+   transition: background-color 0.3s;
+   }
+   .btn-delete:hover {
+   background: #ab000d;
+   }
+   
+   #clearAllBtn {
+   background-color: #d32f2f;
+   margin-top: 15px;
+   width: 100%;
+   }
+   #clearAllBtn:hover {
+   background-color: #9a0007;
+   }
+   
+   #alertMsg {
+   background: #ffebee;
+   color: #c62828;
+   padding: 14px 20px;
+   margin-top: 20px;
+   border-radius: 14px;
+   font-weight: 700;
+   text-align: center;
+   box-shadow: 0 4px 15px rgba(198,40,40,0.2);
+   display: none;
+   user-select: none;
+   }
+   body.dark #alertMsg {
+   background: #b71c1c;
+   color: #ffebee;
+   box-shadow: 0 4px 15px rgba(255,182,193,0.3);
+   }
+   
+   #remainingAmount {
+   margin-top: 25px;
+   font-weight: 700;
+   font-size: 1.35rem;
+   text-align: center;
+   color: #1565c0;
+   user-select: none;
+   }
+   body.dark #remainingAmount {
+   color: #90caf9;
+   }
+   
+   /* WhatsApp Floating Button */
+   .whatsapp-link {
+   position: fixed;
+   bottom: 25px;
+   left: 25px;
+   background: #25d366;
+   border-radius: 50%;
+   width: 60px;
+   height: 60px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+   cursor: pointer;
+   z-index: 10000;
+   transition: transform 0.3s;
+   }
+   .whatsapp-link:hover {
+   transform: scale(1.1);
+   }
+   .whatsapp-link img {
+   width: 32px;
+   height: 32px;
+   user-select: none;
+   }
+   
+   /* Chart Container */
+   #chartContainer {
+   margin-top: 40px;
+   width: 100%;
+   max-width: 700px;
+   background: #f7f9fc;
+   border-radius: 20px;
+   padding: 20px;
+   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+   user-select: none;
+   }
+   body.dark #chartContainer {
+   background: #2a2a2a;
+   box-shadow: 0 10px 30px rgba(255,255,255,0.07);
+   }
+   
+   /* Responsive */
+   @media (max-width: 768px) {
+   main, header {
+   max-width: 100%;
+   border-radius: 0;
+   box-shadow: none;
+   }
+   #chartContainer {
+   border-radius: 0;
+   box-shadow: none;
+   }
+   }
   </style>
 </head>
 <body>
 
-<!-- شاشة الترحيب -->
-<div id="welcomeScreen" class="welcome-screen">
-  <h1>مرحباً بك في تطبيق "إدارة أموالي"</h1>
-  <p>يسعدنا مساعدتك على تتبع مصاريفك ومدخولك<br>مع تحيات: <strong>Mohammad Kaadi</strong></p>
-  <button onclick="hideWelcome()">البدء</button>
-</div>
-
-<header>إدارة أموالي</header>
+<header>
+  إدارة أموالي
+  <button id="darkModeToggle" aria-label="تبديل الوضع الليلي">وضع ليلي</button>
+</header>
 
 <main>
 
   <label for="currencySelect">اختر العملة:</label>
-  <select id="currencySelect">
+  <select id="currencySelect" aria-label="اختيار العملة">
     <option value="SYP">الليرة السورية (ل.س)</option>
     <option value="USD">الدولار الأمريكي ($)</option>
   </select>
 
   <label for="incomeInput">المدخول اليومي (أدخل 0 إذا لم يوجد):</label>
-  <input type="number" id="incomeInput" placeholder="المدخول اليومي" min="0" />
+  <input type="number" id="incomeInput" placeholder="المدخول اليومي" min="0" aria-label="المدخول اليومي" />
 
   <label for="expenseInput">المصاريف اليومية:</label>
-  <input type="number" id="expenseInput" placeholder="المصاريف اليومية" min="0" />
+  <input type="number" id="expenseInput" placeholder="المصاريف اليومية" min="0" aria-label="المصاريف اليومية" />
 
   <label for="expenseDescInput">وصف المصاريف:</label>
-  <input type="text" id="expenseDescInput" placeholder="مثلاً: طعام، مواصلات" />
+  <input type="text" id="expenseDescInput" placeholder="مثلاً: طعام، مواصلات" aria-label="وصف المصاريف" />
 
-  <button onclick="addRecord()">إضافة المصاريف والمدخول</button>
+  <button id="addRecordBtn">إضافة المصاريف والمدخول</button>
 
-  <div id="alertMsg" class="alert" style="display:none;"></div>
+  <div id="alertMsg" role="alert" aria-live="assertive"></div>
 
-  <table id="recordsTable" style="display:none;">
+  <table id="recordsTable" aria-label="جدول السجلات المالية" style="display:none;">
     <thead>
       <tr>
         <th>التاريخ</th>
@@ -210,62 +359,51 @@
     </tfoot>
   </table>
 
-  <button id="clearAllBtn" onclick="clearAllRecords()">حذف كل البيانات</button>
+  <button id="clearAllBtn">حذف كل البيانات</button>
 
   <div id="remainingAmount"></div>
 
-  <button onclick="exportToExcel()">تصدير إلى Excel</button>
+  <button id="exportBtn">تصدير إلى Excel</button>
+
+  <div id="chartContainer">
+    <canvas id="financeChart" aria-label="مخطط المدخول والمصاريف" role="img"></canvas>
+  </div>
 
 </main>
 
-<footer>
-  جميع الحقوق محفوظة © محمد سهيل كعدي
-</footer>
-
-<!-- أيقونة واتساب -->
-<a href="https://wa.me/963980351186" target="_blank" class="whatsapp-link" title="راسلني على واتساب">
+<a href="https://wa.me/963980351186" target="_blank" class="whatsapp-link" title="راسلني على واتساب" aria-label="واتساب">
   <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="واتساب" />
 </a>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  const welcomeScreen = document.getElementById('welcomeScreen');
+  const body = document.body;
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const currencySelect = document.getElementById('currencySelect');
   const incomeInput = document.getElementById('incomeInput');
   const expenseInput = document.getElementById('expenseInput');
   const expenseDescInput = document.getElementById('expenseDescInput');
+  const addRecordBtn = document.getElementById('addRecordBtn');
   const recordsTable = document.getElementById('recordsTable');
   const recordsBody = recordsTable.querySelector('tbody');
   const totalIncomeElem = document.getElementById('totalIncome');
   const totalExpenseElem = document.getElementById('totalExpense');
   const alertMsg = document.getElementById('alertMsg');
   const remainingAmountElem = document.getElementById('remainingAmount');
-  const currencySelect = document.getElementById('currencySelect');
+  const clearAllBtn = document.getElementById('clearAllBtn');
+  const exportBtn = document.getElementById('exportBtn');
+
+  const financeChartCtx = document.getElementById('financeChart').getContext('2d');
+  let financeChart;
 
   let records = JSON.parse(localStorage.getItem('financeRecords') || '[]');
   let currency = localStorage.getItem('currency') || 'SYP';
+  let isDark = localStorage.getItem('darkMode') === 'true';
 
   currencySelect.value = currency;
+  if(isDark) body.classList.add('dark');
 
-  window.onload = () => {
-    if (localStorage.getItem('welcomeShown') === 'true') {
-      welcomeScreen.style.display = 'none';
-      renderTable();
-      checkAlert();
-    }
-  };
-
-  function hideWelcome() {
-    welcomeScreen.style.display = 'none';
-    localStorage.setItem('welcomeShown', 'true');
-    renderTable();
-    checkAlert();
-  }
-
-  currencySelect.addEventListener('change', () => {
-    currency = currencySelect.value;
-    localStorage.setItem('currency', currency);
-    renderTable();
-    checkAlert();
-  });
+  darkModeToggle.textContent = isDark ? 'وضع نهاري' : 'وضع ليلي';
 
   function formatCurrency(value) {
     if (currency === 'USD') {
@@ -275,32 +413,15 @@
     }
   }
 
-  function addRecord() {
-    const income = Number(incomeInput.value);
-    const expense = Number(expenseInput.value);
-    const desc = expenseDescInput.value.trim();
-    const date = new Date().toLocaleDateString();
-
-    if ((income === 0 && expense === 0) || desc === '') {
-      alert('الرجاء إدخال وصف وكمية المدخول أو المصاريف.');
-      return;
-    }
-
-    records.push({ date, desc, income, expense });
+  function saveRecords() {
     localStorage.setItem('financeRecords', JSON.stringify(records));
-
-    incomeInput.value = '';
-    expenseInput.value = '';
-    expenseDescInput.value = '';
-
-    renderTable();
-    checkAlert();
   }
 
   function renderTable() {
-    if (records.length === 0) {
+    if(records.length === 0) {
       recordsTable.style.display = 'none';
       remainingAmountElem.textContent = '';
+      updateChart();
       return;
     }
     recordsTable.style.display = 'table';
@@ -309,16 +430,17 @@
     let totalIncome = 0;
     let totalExpense = 0;
 
-    records.forEach((record, index) => {
+    records.forEach((record, idx) => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${record.date}</td>
         <td>${record.desc}</td>
         <td>${formatCurrency(record.income)}</td>
         <td>${formatCurrency(record.expense)}</td>
-        <td><button class="btn-delete" onclick="deleteRecord(${index})">حذف</button></td>
+        <td><button class="btn-delete" aria-label="حذف السجل رقم ${idx+1}" onclick="deleteRecord(${idx})">حذف</button></td>
       `;
       recordsBody.appendChild(tr);
+
       totalIncome += record.income;
       totalExpense += record.expense;
     });
@@ -327,70 +449,188 @@
     totalExpenseElem.textContent = formatCurrency(totalExpense);
 
     const remaining = totalIncome - totalExpense;
-    remainingAmountElem.textContent = `المبلغ المتبقي: ${formatCurrency(remaining)}`;
+    remainingAmountElem.textContent = `المتبقي: ${formatCurrency(remaining)}`;
+    remainingAmountElem.style.color = remaining >= 0 ? '#2e7d32' : '#c62828';
+
+    updateChart();
+  }
+
+  function addRecord() {
+    alertMsg.style.display = 'none';
+    const income = Number(incomeInput.value);
+    const expense = Number(expenseInput.value);
+    const desc = expenseDescInput.value.trim();
+
+    if (income < 0 || expense < 0) {
+      showAlert('يرجى إدخال قيم موجبة فقط.');
+      return;
+    }
+    if (expense > 0 && desc === '') {
+      showAlert('يرجى إدخال وصف للمصاريف.');
+      return;
+    }
+    if (income === 0 && expense === 0) {
+      showAlert('يرجى إدخال المدخول أو المصاريف.');
+      return;
+    }
+
+    const today = new Date().toLocaleDateString('ar-EG');
+
+    records.push({ date: today, desc: desc || '-', income, expense });
+    saveRecords();
+    renderTable();
+
+    // Reset inputs
+    incomeInput.value = '';
+    expenseInput.value = '';
+    expenseDescInput.value = '';
   }
 
   function deleteRecord(index) {
-    if (confirm('هل أنت متأكد من حذف هذا السجل؟')) {
+    if(confirm('هل أنت متأكد من حذف هذا السجل؟')) {
       records.splice(index, 1);
-      localStorage.setItem('financeRecords', JSON.stringify(records));
+      saveRecords();
       renderTable();
-      checkAlert();
     }
   }
 
-  function clearAllRecords() {
-    if (confirm('هل أنت متأكد من حذف كل البيانات؟ لا يمكن التراجع عن هذا الإجراء!')) {
+  function clearAll() {
+    if(confirm('هل تريد حذف كل البيانات؟')) {
       records = [];
-      localStorage.removeItem('financeRecords');
+      saveRecords();
       renderTable();
-      remainingAmountElem.textContent = '';
-      alertMsg.style.display = 'none';
     }
   }
 
-  function checkAlert() {
-    const totalIncome = records.reduce((acc, r) => acc + r.income, 0);
-    const totalExpense = records.reduce((acc, r) => acc + r, 0);
-    const remaining = totalIncome - totalExpense;
-    
-    if (remaining < 0) {
+  function showAlert(message) {
+    alertMsg.textContent = message;
     alertMsg.style.display = 'block';
-    alertMsg.textContent = 'تحذير: المصاريف تجاوزت المدخول!';
-    } else {
-    alertMsg.style.display = 'none';
-    alertMsg.textContent = '';
+    setTimeout(() => { alertMsg.style.display = 'none'; }, 4000);
+  }
+
+  // Dark mode toggle
+  darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    isDark = body.classList.contains('dark');
+    localStorage.setItem('darkMode', isDark);
+    darkModeToggle.textContent = isDark ? 'وضع نهاري' : 'وضع ليلي';
+  });
+
+  // Currency change
+  currencySelect.addEventListener('change', () => {
+    currency = currencySelect.value;
+    localStorage.setItem('currency', currency);
+    renderTable();
+  });
+
+  addRecordBtn.addEventListener('click', addRecord);
+  clearAllBtn.addEventListener('click', clearAll);
+
+  // تصدير إلى Excel بصيغة CSV
+  exportBtn.addEventListener('click', () => {
+    if(records.length === 0) {
+      showAlert('لا توجد بيانات للتصدير.');
+      return;
     }
-    }
-    
-    function exportToExcel() {
-    if (records.length === 0) {
-    alert('لا توجد بيانات لتصديرها.');
-    return;
-    }
-    
-    let csvContent = 'data:text/csv;charset=utf-8,';
-    csvContent += 'التاريخ,الوصف,المدخول,المصاريف\n';
-    
+
+    let csvContent = "data:text/csv;charset=utf-8,";
+    csvContent += "التاريخ,الوصف,المدخول,المصاريف\n";
+
     records.forEach(r => {
-    const row = [
-    r.date,
-    `"${r.desc}"`,
-    r.income,
-    r.expense
-    ].join(',');
-    csvContent += row + '\n';
+      csvContent += `${r.date},${r.desc},${r.income},${r.expense}\n`;
     });
-    
+
     const encodedUri = encodeURI(csvContent);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', 'إدارة_أموالي_البيانات.csv');
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+
+    const now = new Date();
+    const filename = `finance_${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}.csv`;
+    link.setAttribute("download", filename);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    }
-    </script>
-    
-    </body>
-    </html>
+  });
+
+  // تحديث الرسم البياني باستخدام Chart.js
+  function updateChart() {
+    if(financeChart) financeChart.destroy();
+
+    const dates = records.map(r => r.date);
+    const incomeData = records.map(r => r.income);
+    const expenseData = records.map(r => r.expense);
+
+    financeChart = new Chart(financeChartCtx, {
+      type: 'bar',
+      data: {
+        labels: dates,
+        datasets: [
+          {
+            label: 'المدخول',
+            data: incomeData,
+            backgroundColor: '#1e88e5',
+            borderRadius: 8,
+          },
+          {
+            label: 'المصاريف',
+            data: expenseData,
+            backgroundColor: '#e53935',
+            borderRadius: 8,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        stacked: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: isDark ? '#eee' : '#333',
+              font: { size: 14 }
+            },
+            grid: {
+              color: isDark ? '#444' : '#ddd'
+            }
+          },
+          x: {
+            ticks: {
+              color: isDark ? '#eee' : '#333',
+              font: { size: 14 }
+            },
+            grid: {
+              display: false
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: isDark ? '#eee' : '#333',
+              font: { size: 16, weight: 'bold' }
+            }
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: isDark ? '#333' : '#fff',
+            titleColor: isDark ? '#90caf9' : '#1e88e5',
+            bodyColor: isDark ? '#eee' : '#000',
+            borderColor: isDark ? '#90caf9' : '#1e88e5',
+            borderWidth: 1,
+          }
+        }
+      }
+    });
+  }
+
+  // Expose deleteRecord globally for onclick attribute
+  window.deleteRecord = deleteRecord;
+
+  // بدء التشغيل
+  renderTable();
+
+</script>
+
+</body>
+</html>
